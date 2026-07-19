@@ -1,0 +1,14 @@
+# Code Owners
+# This file defines the default reviewers for different parts of the codebase
+
+# Default owner for everything
+* @DLinacre
+
+# Frontend
+# /client @DLinacre
+
+# Backend
+# /server @DLinacre
+
+# Documentation
+# *.md @DLinacre
