@@ -1,18 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='16,2 28,28 4,28' fill='url(%23g)'/%3E%3Cpolygon points='16,8 23,24 9,24' fill='%230a0a0f'/%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Prism — Project Intelligence Platform</title>
+    <meta name="title" content="Prism — Project Intelligence Platform" />
+    <meta name="description" content="A premium project intelligence and team collaboration platform for modern engineering teams. Manage projects, track tasks, and visualize team performance." />
+    <meta name="author" content="DLinacre" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Theme & PWA -->
     <meta name="theme-color" content="#0a0a0f" />
-    <meta name="description" content="Prism - Project Intelligence Platform" />
-    <title>Prism</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='16,2 28,28 4,28' fill='url(%23g)'/%3E%3Cpolygon points='16,8 23,24 9,24' fill='%230a0a0f'/%3E%3C/svg%3E" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/DLinacre/prism" />
+    <meta property="og:title" content="Prism — Project Intelligence Platform" />
+    <meta property="og:description" content="A premium project intelligence and team collaboration platform for modern engineering teams." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/DLinacre/prism/main/.github/banner.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://github.com/DLinacre/prism" />
+    <meta property="twitter:title" content="Prism — Project Intelligence Platform" />
+    <meta property="twitter:description" content="A premium project intelligence and team collaboration platform for modern engineering teams." />
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/DLinacre/prism/main/.github/banner.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
+    <!-- Accessibility: Preload critical assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Root element for React -->
+    <div id="root" role="application"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Noscript fallback -->
+    <noscript>
+      <style>
+        body { background: #0a0a0f; color: #f0f0f5; font-family: Inter, sans-serif; }
+        .noscript-warning { 
+          padding: 2rem; 
+          text-align: center; 
+          max-width: 600px; 
+          margin: 4rem auto; 
+        }
+      </style>
+      <div class="noscript-warning">
+        <h1>JavaScript Required</h1>
+        <p>Prism requires JavaScript to run. Please enable JavaScript in your browser settings to use this application.</p>
+      </div>
+    </noscript>
   </body>
 </html>

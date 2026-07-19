@@ -17,6 +17,9 @@
   <a href="https://github.com/DLinacre/prism/actions">
     <img src="https://img.shields.io/github/actions/workflow/status/DLinacre/prism/ci.yml?style=for-the-badge" alt="Build" />
   </a>
+  <a href="https://github.com/DLinacre/prism/blob/main/ACCESSIBILITY.md">
+    <img src="https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-6366f1?style=for-the-badge" alt="Accessibility" />
+  </a>
 </p>
 
 ---
@@ -39,7 +42,26 @@ Think of it as the command center your team deserves — where every pixel, ever
 | **Kanban** | Drag-and-drop boards with 4 columns |
 | **Team** | Member profiles, contributions, invitations |
 | **Analytics** | Velocity charts, burndown, distributions |
+| **Accessibility** | Full keyboard nav, screen reader support |
 | **Settings** | Profile, notifications, theme, security |
+
+---
+
+## ♿ Accessibility
+
+Prism is built with accessibility as a core feature:
+
+| Feature | Description |
+|---------|-------------|
+| **WCAG 2.1 AA** | Compliant color contrast and typography |
+| **Keyboard Nav** | Full functionality without mouse |
+| **Screen Readers** | NVDA, VoiceOver, JAWS compatible |
+| **Reduced Motion** | Respects `prefers-reduced-motion` |
+| **High Contrast** | Supports `prefers-contrast` |
+| **Skip Links** | Jump to main content |
+| **ARIA Labels** | Descriptive labels for all elements |
+
+📖 [View full Accessibility Statement](ACCESSIBILITY.md)
 
 ---
 
