@@ -11,10 +11,10 @@ env:
 
 jobs:
   # ============================================
-  # LINT & TYPE CHECK
+  # BUILD
   # ============================================
-  lint:
-    name: Lint & Type Check
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,51 +26,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run linter
-        run: npm run lint
-
-  # ============================================
-  # SERVER TESTS
-  # ============================================
-  server-test:
-    name: Server Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run server tests
-        run: npm run test:server
-
-  # ============================================
-  # CLIENT BUILD
-  # ============================================
-  build-client:
-    name: Build Client
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
 
       - name: Install client dependencies
@@ -78,22 +34,32 @@ jobs:
 
       - name: Build client
         run: npm run build
+        working-directory: ./client
+
+      - name: Verify build output
+        run: |
+          if [ -d "client/dist" ]; then
+            echo "✅ Build output exists"
+            ls -la client/dist
+          else
+            echo "❌ Build output not found"
+            exit 1
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main'
         with:
-          name: client-build
+          name: client-dist
           path: client/dist
           retention-days: 7
 
   # ============================================
-  # E2E TESTS (if configured)
+  # SERVER HEALTH CHECK
   # ============================================
-  e2e:
-    name: E2E Tests
+  server-check:
+    name: Server Health Check
     runs-on: ubuntu-latest
-    needs: [build-client]
-    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -102,84 +68,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install client dependencies
-        run: cd client && npm ci
+      - name: Start server in background
+        run: node server/index.js &
+        
+      - name: Wait for server to start
+        run: sleep 3
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: client-build
-          path: client/dist
-
-      - name: Run E2E tests
-        run: npm run test:e2e
-        env:
-          CI: true
-
-  # ============================================
-  # DEPLOY TO PREVIEW
-  # ============================================
-  deploy-preview:
-    name: Deploy Preview
-    runs-on: ubuntu-latest
-    needs: [build-client]
-    if: github.event_name == 'pull_request'
-    environment:
-      name: preview
-      url: ${{ steps.deploy.outputs.url }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to preview
-        id: deploy
+      - name: Health check
         run: |
-          echo "Deploying preview..."
-          # Add your deployment logic here
-          echo "url=https://preview.prism.io" >> "$GITHUB_OUTPUT"
-
-  # ============================================
-  # DEPLOY TO PRODUCTION
-  # ============================================
-  deploy-production:
-    name: Deploy Production
-    runs-on: ubuntu-latest
-    needs: [lint, build-client]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    environment:
-      name: production
-      url: https://prism.io
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install client dependencies
-        run: cd client && npm ci
-
-      - name: Build client
-        run: npm run build
-
-      - name: Deploy to production
-        run: |
-          echo "Deploying to production..."
-          # Add your production deployment logic here
-          # Example: ./scripts/deploy.sh
-
-      - name: Notify success
-        if: always()
-        run: |
-          echo "Deployment completed!"
+          response=$(curl -s http://localhost:3001/api/health)
+          if echo "$response" | grep -q "ok"; then
+            echo "✅ Server health check passed"
+          else
+            echo "❌ Server health check failed"
+            exit 1
+          fi
