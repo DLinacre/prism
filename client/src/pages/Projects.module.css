@@ -1,0 +1,422 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: var(--space-6);
+}
+
+/* View Toggle */
+.viewToggle {
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: 4px;
+}
+
+.viewBtn {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.viewBtn:hover {
+  color: var(--text-primary);
+}
+
+.viewBtn.active {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Projects Grid (List View) */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+.projectCard {
+  padding: var(--space-5);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  animation: slideUp 0.3s var(--spring) backwards;
+  animation-delay: var(--delay);
+}
+
+.projectCard:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.projectTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.projectColor {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.projectMenu {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.projectMenu:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.projectMenu svg {
+  width: 18px;
+  height: 18px;
+}
+
+.projectTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.projectDesc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.projectStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.projectProgress {
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s var(--spring);
+}
+
+.newProjectCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-8);
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  min-height: 200px;
+}
+
+.newProjectCard:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-muted);
+}
+
+.newProjectCard svg {
+  width: 32px;
+  height: 32px;
+}
+
+.newProjectCard span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Kanban Board */
+.board {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  overflow-x: auto;
+  flex: 1;
+}
+
+.column {
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.column.dragOver {
+  background: var(--bg-tertiary);
+  box-shadow: inset 0 0 0 2px var(--accent-primary);
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.columnTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.columnDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.columnCount {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.columnAdd {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.columnAdd:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.columnAdd svg {
+  width: 18px;
+  height: 18px;
+}
+
+.columnContent {
+  flex: 1;
+  padding: var(--space-3);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Task Card */
+.taskCard {
+  padding: var(--space-4);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: grab;
+  transition: all var(--transition-fast);
+  animation: slideUp 0.3s var(--spring) backwards;
+  animation-delay: var(--delay);
+  position: relative;
+}
+
+.taskCard:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.taskCard:hover .taskDelete {
+  opacity: 1;
+}
+
+.taskCard.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.taskMenu {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.taskCard:hover .taskMenu {
+  opacity: 1;
+}
+
+.taskMenu:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.taskMenu svg {
+  width: 16px;
+  height: 16px;
+}
+
+.taskTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: 1.4;
+}
+
+.taskDesc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.taskFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.taskDate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.taskDate svg {
+  width: 14px;
+  height: 14px;
+}
+
+.unassigned {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskDelete {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.taskDelete:hover {
+  background: var(--danger-muted);
+  color: var(--danger);
+}
+
+.taskDelete svg {
+  width: 16px;
+  height: 16px;
+}
+
+.emptyColumn {
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Task Form */
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

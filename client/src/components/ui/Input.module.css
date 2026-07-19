@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.hasIconLeft {
+  padding-left: 42px;
+}
+
+.hasIconRight {
+  padding-right: 42px;
+}
+
+.iconLeft,
+.iconRight {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.iconLeft {
+  left: 14px;
+}
+
+.iconRight {
+  right: 14px;
+  pointer-events: auto;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.iconRight:hover {
+  color: var(--text-secondary);
+}
+
+.iconLeft svg,
+.iconRight svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Error state */
+.hasError .input {
+  border-color: var(--danger);
+}
+
+.hasError .input:focus {
+  box-shadow: 0 0 0 3px var(--danger-muted);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+.error svg {
+  width: 14px;
+  height: 14px;
+}

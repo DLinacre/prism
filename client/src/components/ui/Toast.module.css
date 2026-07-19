@@ -1,0 +1,131 @@
+.container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.3s var(--spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  animation: progress 5s linear forwards;
+}
+
+/* Types */
+.success {
+  border-color: var(--success);
+}
+
+.success .icon {
+  color: var(--success);
+}
+
+.success .progress {
+  background: var(--success);
+}
+
+.error {
+  border-color: var(--danger);
+}
+
+.error .icon {
+  color: var(--danger);
+}
+
+.error .progress {
+  background: var(--danger);
+}
+
+.warning {
+  border-color: var(--warning);
+}
+
+.warning .icon {
+  color: var(--warning);
+}
+
+.warning .progress {
+  background: var(--warning);
+}
+
+.info {
+  border-color: var(--info);
+}
+
+.info .icon {
+  color: var(--info);
+}
+
+.info .progress {
+  background: var(--info);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
