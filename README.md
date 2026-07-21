@@ -1,3 +1,5 @@
+![prism Banner](assets/banner.png)
+
 # Prism
 
 <p align="center">
